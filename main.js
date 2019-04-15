@@ -8,15 +8,16 @@ window.addEventListener("load", () => {
     let span = document.querySelector(".degree-section span")
 
 
+
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
 
-            const api = `https://api.darksky.net/forecast/9e33d2f2b23c439a1f389bc580fc0e06/${lat},${long}`
+            const proxy = `https://cors-anywhere.herokuapp.com/`
+            const api = `${proxy}https://api.darksky.net/forecast/9e33d2f2b23c439a1f389bc580fc0e06/${lat},${long}`
 
             fetch(api).then(response => {
-                console.log(response)
                 return response.json()
             }).then(data => {
                 const { temperature, summary, icon } = data.currently
